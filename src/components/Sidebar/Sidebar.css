@@ -1,9 +1,9 @@
 aside {
   position: fixed;
-  background: linear-gradient(var(--secondary-light-color),
+  background: linear-gradient(to left, var(--secondary-light-color),
                               var(--secondary-dark-color));
   color: var(--text-color);
-  width: 240px;
+  width: 250px;
   height: 100%;
   box-shadow: 0 0 10px var(--secondary-light-color);
 }

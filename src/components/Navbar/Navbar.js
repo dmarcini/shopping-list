@@ -1,5 +1,9 @@
 import * as React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter,
+        Switch,
+        Route,
+        Redirect
+} from "react-router-dom";
 
 import NavbarItem from "../NavbarItem/NavbarItem";
 import Home from "../Home/Home";
@@ -18,7 +22,7 @@ function Navbar() {
       <nav>
         <h1>Manage your shopping lists</h1>
         <ul>
-          <NavbarItem to="/" class="fas fa-home">
+          <NavbarItem to="/home" class="fas fa-home">
             Home
           </NavbarItem>
           <NavbarItem to="/add-shopping-lists" class="fas fa-cart-plus">
@@ -41,7 +45,7 @@ function Navbar() {
           </NavbarItem>
         </ul>
         <Switch>
-          <Route path="/"
+          <Route path="/home"
                  component={Home} exact>
           </Route>
           <Route path="/add-shopping-lists"
@@ -62,6 +66,7 @@ function Navbar() {
           <Route path="/about"
                  component={About} exact>
           </Route>
+          <Redirect to="/home"></Redirect>
         </Switch>
       </nav>
     </BrowserRouter>

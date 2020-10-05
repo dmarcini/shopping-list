@@ -1,7 +1,9 @@
 main {
   position: fixed;
-  left: 240px;
+  top: 60px;
+  left: 250px;
   background-color: var(--auxiliary-color);
   height: 100%;
   width: 100%;
+  z-index: -1;
 }
