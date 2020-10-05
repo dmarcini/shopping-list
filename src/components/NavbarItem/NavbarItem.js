@@ -1,12 +1,15 @@
 import * as React from "react";
+import {Link} from "react-router-dom";
 
 import "./NavbarItem.css";
 
 function NavbarItem(props) {
   return (
     <li className="nav-item">
-      <span className={props.class + " icon"}></span>
-      <a href={props.href}>{props.children}</a>
+      <Link to={props.to}>
+        <span className={props.class + " icon"}></span>
+        {props.children}
+      </Link>
     </li>
   )
 }

@@ -9,7 +9,7 @@ import "./css/fontawesome/all.min.css";
 import * as serviceWorker from "./js/serviceWorker";
 
 ReactDOM.render(
-  <App />,
+  <App/>,
   document.getElementById("root")
 );
 

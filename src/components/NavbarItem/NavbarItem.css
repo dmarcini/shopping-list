@@ -5,7 +5,21 @@
   width: 240px;
   margin-bottom: 10px;
   padding: 5px;
-  transition-duration: 0.4s;
+  transition: opacity 0.4s;
+}
+
+.nav-item:hover {
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.nav-item:first-child {
+  margin-bottom: 30px;
+}
+
+.nav-item:nth-last-child(2) {
+  margin-top: 30px;
 }
 
 .icon {
@@ -13,18 +27,11 @@
   padding: 10px;
 }
 
-.nav-item:hover {
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .nav-item a {
+  display: block;
   color: var(--text-color);
   font-size: 0.875em;
   text-transform: uppercase;
   text-decoration: none;
-}
-
-.nav-item:nth-last-child(2) {
-  margin-top: 50px;
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
-import Main from "../Main/Main";
+import Home from "../Home/Home";
 
 import "./App.css";
 
@@ -11,7 +11,7 @@ function App() {
     <div id="app">
       <Header/>
       <Sidebar/>
-      <Main/>
+      <Home/>
     </div>
   );
 }

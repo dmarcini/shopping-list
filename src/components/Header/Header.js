@@ -5,7 +5,7 @@ import "./Header.css";
 function Header() {
   return (
     <header>
-      Shopping List
+      Shopping Lists Manager
     </header>
   )
 }
