@@ -1,0 +1,30 @@
+.nav-item {
+  display: block;
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  width: 240px;
+  margin-bottom: 10px;
+  padding: 5px;
+  transition-duration: 0.4s;
+}
+
+.icon {
+  font-size: 1.125em;
+  padding: 10px;
+}
+
+.nav-item:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-item a {
+  color: var(--text-color);
+  font-size: 0.875em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.nav-item:nth-last-child(2) {
+  margin-top: 50px;
+}

@@ -1,13 +1,14 @@
-header {
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(var(--primary-light-color),
                               var(--primary-dark-color));
-  color: var(--text-color);
   width: 100%;
-  font-size: 2em;
+  font-size: 0.75em;
   text-align: center;
   text-transform: uppercase;
-  padding: 20px;
-  box-shadow: 0 0 5px var(--primary-light-color);
+  padding: 12px;
+  box-shadow: 0 0 2px var(--primary-light-color);
   z-index: 1;
 }
-
