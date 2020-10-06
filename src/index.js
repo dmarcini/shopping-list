@@ -9,7 +9,7 @@ import "./css/fontawesome/all.min.css";
 import * as serviceWorker from "./js/serviceWorker";
 import LocalStorageManager from "./js/localStorageManager";
 
-//localStorage.removeItem("shoppingLists");
+localStorage.removeItem("shoppingLists");
 
 if (localStorage.getItem("shoppingLists") === null) {
   localStorage.setItem("shoppingLists",

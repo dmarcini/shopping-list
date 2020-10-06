@@ -4,8 +4,7 @@ import "./Home.css";
 
 function Home() {
   return (
-    <main>
-      
+    <main id="home">
     </main>
   );
 }

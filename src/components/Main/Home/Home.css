@@ -1,7 +1,5 @@
-main {
-  position: fixed;
-  top: 60px;
-  left: 250px;
+#home {
+  position: relative;
   background-color: var(--auxiliary-color);
   height: 100%;
   width: 100%;

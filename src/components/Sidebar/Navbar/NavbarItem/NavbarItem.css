@@ -17,11 +17,8 @@
   border-top: 1px solid var(--primary-dark-color);
 }
 
-.nav-item:nth-last-child(2) {
-  border-top: 1px solid var(--primary-dark-color);
-}
-
 .nav-item:last-child {
+  border-top: 1px solid var(--primary-dark-color);
   border-bottom: 1px solid var(--primary-dark-color);
 }
 

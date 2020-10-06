@@ -13,6 +13,14 @@ class LocalStorageManager {
 
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
   }
+
+  static getShoppingLists() {
+    const localStorageManager =
+      JSON.parse(localStorage.getItem("shoppingLists"));
+    const shoppingLists = new Array(localStorageManager.shoppingLists);
+
+    return shoppingLists;
+  }
 }
 
 export default LocalStorageManager;

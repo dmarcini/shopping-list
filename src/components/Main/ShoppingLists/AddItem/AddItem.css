@@ -1,5 +1,6 @@
 .item {
   position: relative;
+  user-select: none;
 }
 
 .item-name {
@@ -8,19 +9,34 @@
                               var(--primary-dark-color));
   color: var(--text-color);
   font-size: 1em;
-  padding: 12px 80px 12px 30px;
+  padding: 12px 80px 12px 50px;
   width: 100%;
   outline: none;
   border: none;
   border-bottom: 1px solid var(--primary-dark-color);
 }
 
-.remove-item {
+input[type="checkbox"], .remove-item {
   position: absolute;
 }
 
+input[type="checkbox"] {
+  top: 12px;
+  left: 12px;
+  filter: grayscale(1);
+  transform: scale(1.5);
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-light-color);  
+}
+
 .remove-item {
-  top: 9px;
+  top: 7px;
   right: 30px;
   background-color: var(--primary-light-color);
   color: var(--text-color);

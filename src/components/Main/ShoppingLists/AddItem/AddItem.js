@@ -18,6 +18,7 @@ class AddItems extends React.Component {
                value={this.props.value}
                onChange={(event) => this.props.onChange(event, this.props.id)}
         />
+        <input type="checkbox"></input>
         <button class="remove-item" type="button"
                 onClick={(event) => this.props.onClick(event, this.props.id)}>
           <span class="fa fa-trash"></span>

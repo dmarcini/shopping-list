@@ -1,4 +1,4 @@
-class ShoppingList {
+class ShoppingListModel {
   constructor(title, items = []) {
     const localStorageManager =
       JSON.parse(localStorage.getItem("shoppingLists"));
@@ -17,7 +17,7 @@ class ShoppingList {
   }
 }
 
-class ShoppingListItem {
+class ShoppingListItemModel {
   constructor(name) {
     this.id = Counter.getAndIncrement();
     this.name = name;
@@ -32,4 +32,4 @@ class Counter {
   }
 }
 
-export { ShoppingList, ShoppingListItem };
+export { ShoppingListModel, ShoppingListItemModel };

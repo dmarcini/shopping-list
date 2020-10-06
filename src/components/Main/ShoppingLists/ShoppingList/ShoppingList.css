@@ -2,23 +2,14 @@ section {
   padding: 100px 500px 0 250px;
 }
 
-fieldset {
-  position: relative;
-  background: linear-gradient(to left, var(--secondary-light-color),
-                              var(--secondary-dark-color));
-  width: 700px;
-  padding: 50px;
-  border: none;
-  box-shadow: 0px 0px 5px var(--secondary-light-color);
+#list-name {
+  color: var(--text-color);
+  font-size: 1.25em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
-legend {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-}
-
-legend input {
+#list-name input {
   background: linear-gradient(var(--primary-light-color),
                               var(--primary-dark-color));
   color: var(--text-color);
@@ -28,13 +19,6 @@ legend input {
   padding: 5px;
   outline: none;
   border: none;
-}
-
-#list-name {
-  color: var(--text-color);
-  font-size: 1.25em;
-  text-transform: uppercase;
-  margin-bottom: 30px;
 }
 
 #items-group {

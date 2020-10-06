@@ -12,17 +12,8 @@ function Navbar() {
         <NavbarItem to="/home" class="fas fa-home">
           Home
         </NavbarItem>
-        <NavbarItem to="/add-shopping-lists" class="fas fa-cart-plus">
-          Add shopping lists
-        </NavbarItem>
-        <NavbarItem to="/update-shopping-lists" class="fas fa-edit">
-          Update shopping lists
-        </NavbarItem>
-        <NavbarItem to="/remove-shopping-lists" class="fas fa-minus-circle">
-          Remove shopping lists
-        </NavbarItem>
-        <NavbarItem to="show-shopping-lists" class="fas fa-list">
-          Show shopping lists
+        <NavbarItem to="/shopping-lists" class="fas fa-cart-plus">
+          Shopping lists
         </NavbarItem>
         <NavbarItem to="refuse-bin" class="fa fa-trash">
           Refuse bin
