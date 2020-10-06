@@ -1,0 +1,40 @@
+.item {
+  position: relative;
+}
+
+.item-name {
+  display: block;
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  color: var(--text-color);
+  font-size: 1em;
+  padding: 12px 80px 12px 30px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary-dark-color);
+}
+
+.remove-item {
+  position: absolute;
+}
+
+.remove-item {
+  top: 9px;
+  right: 30px;
+  background-color: var(--primary-light-color);
+  color: var(--text-color);
+  font-size: 1em;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--primary-dark-color);
+  border-radius: 50%;
+  padding: 5px;
+  outline: none;
+}
+
+.remove-item:hover {
+  background-color: var(--primary-dark-color);
+  cursor: pointer;
+  opacity: 0.6;
+}
