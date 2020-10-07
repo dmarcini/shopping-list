@@ -42,6 +42,7 @@ class ShowLists extends React.Component {
 
     return lists.map(list => (
       <ShowList
+        key={list.id}
         list={list}
         listType="actual"
         onClickShowList={this.handleClickShowList}
@@ -83,10 +84,6 @@ class ShowLists extends React.Component {
     });
 
     LocalStorageManager.removeShoppingList(id);
-  }
-
-  handleClickEditTitle = () => {
-
   }
 
   handleClickAddList = () => {

@@ -16,7 +16,7 @@ class ShowList  extends React.Component {
 
   render() {
     const listType = this.props.listType;
-
+  
     const shouldShowEditListTitleButton = (listType === "removed") ? false
                                                                    : true;
     const thrashIconClass = (listType === "removed") ? "fas fa-trash-restore" :
@@ -78,15 +78,14 @@ class ShowList  extends React.Component {
   handleBlur = (event) => {
     this.setState((state) => ({isTitleEditable: !state.isTitleEditable}));
 
-    const disabled = event.currentTarget.parentElement.firstChild.disabled;
-
-    event.currentTarget.parentElement.firstChild.disabled = !disabled;
+    event.currentTarget.parentElement.firstChild.disabled =
+     !event.currentTarget.parentElement.firstChild.disabled;
 
     const list = LocalStorageManager.getShoppingList(this.props.list.id);
 
     list.title = this.state.title;
 
-    LocalStorageManager.updateShoppingList(list, this.props.list.id);
+    LocalStorageManager.updateShoppingList(this.props.list.id, list);
   }
 }
 

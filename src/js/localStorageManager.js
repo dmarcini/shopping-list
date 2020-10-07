@@ -22,13 +22,15 @@ class LocalStorageManager {
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
   }
 
-  static updateShoppingList(shoppingList, id = null) {
+  static updateShoppingList(id, shoppingList) {
+    if (id === undefined || id === null) {
+      return;
+    }
+
     const localStorageManager = this.getInstance();
     const shoppingLists = localStorageManager.shoppingLists;
 
-    const idListToUpdate = (id === null) ? this.getLastShoppingList().id : id;
-
-    shoppingLists[idListToUpdate] = shoppingList;
+    shoppingLists[id] = shoppingList;
 
     localStorageManager.shoppingLists = shoppingLists;
 
@@ -99,12 +101,12 @@ class LocalStorageManager {
     toInstance.push(fromInstance[index]);
     fromInstance.splice(index, 1);
 
+    localStorageManager[from] = fromInstance;;
+    localStorageManager[to] = toInstance;
+
     toInstance.sort((shoppingList1, shoppingList2) => {
       return shoppingList1.id - shoppingList2.id
     });
-
-    localStorageManager[from] = fromInstance;;
-    localStorageManager[to] = toInstance;
 
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager)); 
   }

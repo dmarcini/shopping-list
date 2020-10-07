@@ -22,6 +22,7 @@ class RefuseBin extends React.Component {
       <div id="lists">
         {removedLists.map(list => (
           <ShowList
+            key={list.id}
             list={list}
             listType="removed"
             onClickRemoveList={this.handleClickRemoveList}
