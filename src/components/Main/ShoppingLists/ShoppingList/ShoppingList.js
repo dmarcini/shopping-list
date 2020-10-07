@@ -56,6 +56,7 @@ class ShoppingList extends React.Component {
     ) 
   }
 
+  /*
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -91,7 +92,7 @@ class ShoppingList extends React.Component {
     const items = this.state.items.filter(item => item.id !== id);
 
     this.setState({items: items});
-  }
+  }*/
 }
 
 export default ShoppingList;

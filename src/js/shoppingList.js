@@ -1,15 +1,10 @@
+import LocalStorageManager from "./localStorageManager";
+
 class ShoppingListModel {
   constructor(title, items = []) {
-    const localStorageManager =
-      JSON.parse(localStorage.getItem("shoppingLists"));
-
-    this.id = parseInt(localStorageManager.id);
+    this.id = LocalStorageManager.getIDCounter();
     this.title = title;
     this.items = items;
-
-    localStorageManager.id = this.id + 1;
-
-    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
   }
 
   addItem(item) {

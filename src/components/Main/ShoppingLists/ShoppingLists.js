@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import ShoppingList from "./ShoppingList/ShoppingList";
 import FirstShoppingList from "./FirstShoppingList/FirstShoppingList";
+import ShowLists from "./ShowLists/ShowLists";
 
 import LocalStorageManager from "../../../js/localStorageManager";
 
@@ -14,7 +14,7 @@ class ShoppingLists extends React.Component {
     }
 
     return (
-      <ShoppingList/>
+      <ShowLists/>
     )
   }
 }
