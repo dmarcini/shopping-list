@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import Header from "../../Header/Header"
 import NavbarItem from "./NavbarItem/NavbarItem";
 
 import "./Navbar.css";
@@ -7,6 +8,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav>
+      <Header/>
       <h1>Manage your shopping lists</h1>
       <ul>
         <NavbarItem

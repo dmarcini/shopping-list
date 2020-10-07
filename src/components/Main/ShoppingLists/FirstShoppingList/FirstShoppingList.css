@@ -36,3 +36,9 @@ main button:hover {
   font-weight: bold;
   opacity: 0.9;  
 }
+
+@media only screen and (max-width: 768px) {
+  main #list-img {
+    margin: 50px auto 0 auto;
+  }
+}

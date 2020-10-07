@@ -7,7 +7,7 @@ function ListNameModal(props) {
   return (
     <Container id="modal">
       <Row>
-        <h1>Name for new lists:</h1>
+        <h1>Name for new list:</h1>
       </Row>
       <Row>
         <input

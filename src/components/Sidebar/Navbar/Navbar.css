@@ -1,19 +1,23 @@
 nav {
   width: 250px;
   height: 100%;
-  z-index: 1;
 }
 
 nav h1 {
   font-size: 1.125em;
   text-transform: uppercase;
   text-align: left;
-  margin: 0;
-  padding: 30px 0 30px 20px;
+  padding: 40px 0 30px 20px;
 }
 
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  nav h1 {
+    display: none;
+  }
 }

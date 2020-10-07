@@ -9,5 +9,6 @@ header {
   text-transform: uppercase;
   padding: 10px;
   box-shadow: 0 0 5px 1px var(--primary-light-color);
+  z-index: 1;
 }
 

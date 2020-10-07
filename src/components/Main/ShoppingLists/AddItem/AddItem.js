@@ -15,6 +15,7 @@ class AddItems extends React.Component {
 
   render() {
     const disabled = this.state.isChecked ? "disabled" : "";
+    const hidden = this.state.isChecked ? "" : "hidden";
 
     return (
       <Row className={"item " + disabled}>
@@ -25,10 +26,16 @@ class AddItems extends React.Component {
           value={this.props.value}
           onChange={(event) => this.props.onChange(event, this.props.id)}
         />
-        <input            
-          type="checkbox"
-          onClick={this.handleClick}
-        />
+        <label className="checkbox">
+          <input
+            type="checkbox"
+            onClick={this.handleClick}
+          />
+          <span className="checkmark">
+            <span className={"fas fa-check " + hidden}></span>
+          </span>
+        </label>
+        
         <button
           className="remove-item"
           type="button"

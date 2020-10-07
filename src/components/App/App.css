@@ -4,6 +4,15 @@
   margin: 0;
 }
 
+#sidebar {
+  position: fixed;
+  top: 0px;
+}
+
+#main {
+  left: 25%;
+}
+
 #sidebar, #main {
   width: 100%;
   height: 100%;
@@ -14,4 +23,31 @@
 #main main {
   width: 100%;
   height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  #sidebar {
+    position: relative;
+  }
+
+  #main {
+    padding-bottom: 50px;
+    left: 0
+  }
+
+  #main main {
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #sidebar {
+    width: 20% !important;
+  }
+
+  #main, #main main {
+    margin-left: -5%;
+    padding-left: 5%;
+  }
+
 }

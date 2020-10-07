@@ -53,3 +53,10 @@
 #modal button:focus {
   outline: none;
 }
+
+@media only screen and (max-width: 768px) {
+  #modal {
+    max-width: 500px;
+    margin: 50px auto 50px auto;
+  }
+}

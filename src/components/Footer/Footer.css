@@ -1,0 +1,25 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  color: var(--text-color);
+  width: 25%;
+  font-size: 0.75em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  footer {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  footer {
+    width: 20%;
+  }
+}
