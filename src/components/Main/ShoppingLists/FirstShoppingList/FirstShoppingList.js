@@ -9,6 +9,7 @@ import ShoppingList from "../ShoppingList/ShoppingList";
 import ListNameModal from "../ListNameModal/ListNameModal";
 
 import LocalStorageManager from "../../../../js/localStorageManager";
+import { ShoppingListModel } from "../../../../js/shoppingList";
 
 import "./FirstShoppingList.css";
 
@@ -16,18 +17,17 @@ class FirstShoppingList extends React.Component {
   constructor(props) {
     super(props);
 
-    const isFirstList = LocalStorageManager.getShoppingLists().length <= 1;
-
     this.state = {
-      shouldRenderShoppingList: !isFirstList,
+      shouldRenderShoppingList: false,
       shouldRenderModal: false,
-      listName: ""
+      listName: "",
+      list: null
     }
   }
 
   renderShoppingList() {
     return (
-      <ShoppingList listName={this.state.listName}/>
+      <ShoppingList list={this.state.list}/>
     )
   }
 
@@ -76,9 +76,14 @@ class FirstShoppingList extends React.Component {
   }
 
   handleClickModal = () => {
+    const newList = new ShoppingListModel(this.state.listName);
+
+    LocalStorageManager.addShoppingList(newList);
+
     this.setState({
       shouldRenderModal: false,
-      shouldRenderShoppingList: true
+      shouldRenderShoppingList: true,
+      list: newList
     });
   }
 

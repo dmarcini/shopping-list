@@ -32,26 +32,11 @@ class LocalStorageManager {
   }
 
   static removeShoppingList(id) {
-    const localStorageManager = this.getInstance();
+    this.moveShoppingList(id, "shoppingLists", "removedShoppingLists");
+  }
 
-    const shoppingLists = [...localStorageManager.shoppingLists];
-    const removedShopingLists = [...localStorageManager.removedShoppingLists];
-
-    const index = shoppingLists.findIndex(shoppingList => {
-      return shoppingList.id === id;
-    });
-
-    if (index === undefined) {
-      return;
-    }
-
-    removedShopingLists.push(shoppingLists[index]);
-    shoppingLists.splice(index, 1);
-
-    localStorageManager.removeShoppingList = removedShopingLists;
-    localStorageManager.shoppingLists = shoppingLists;
-
-    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
+  static restoreRemovedShoppingList(id) {
+    this.moveShoppingList(id, "removedShoppingLists", "shoppingLists");
   }
 
   static getLastShoppingList() {
@@ -67,11 +52,11 @@ class LocalStorageManager {
     return shoppingLists;
   }
 
-  static getDeletedShoppingLists() {
+  static getRemovedShoppingLists() {
     const localStorageManager = this.getInstance();
-    const deletedShoppingLists = localStorageManager.deletedShoppingLists;
+    const removedShoppingLists = [...localStorageManager.removedShoppingLists];
 
-    return deletedShoppingLists;
+    return removedShoppingLists;
   }
 
   static getIDCounter() {
@@ -80,6 +65,37 @@ class LocalStorageManager {
 
   static getInstance() {
     return JSON.parse(localStorage.getItem("shoppingLists"));
+  }
+
+  static moveShoppingList(id, from, to) {
+    const localStorageManager = this.getInstance();
+
+    const fromInstance = [...localStorageManager[from]];
+    let toInstance = [...localStorageManager[to]];
+
+    const index = fromInstance.findIndex(shoppingList => {
+      return shoppingList.id === id;
+    });
+
+    if (index === undefined) {
+      return;
+    }
+
+    if (toInstance === undefined) {
+      toInstance = [];
+    }
+
+    toInstance.push(fromInstance[index]);
+    fromInstance.splice(index, 1);
+
+    toInstance.sort((shoppingList1, shoppingList2) => {
+      return shoppingList1.id - shoppingList2.id
+    });
+
+    localStorageManager[from] = fromInstance;;
+    localStorageManager[to] = toInstance;
+
+    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager)); 
   }
 }
 

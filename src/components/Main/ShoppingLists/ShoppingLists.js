@@ -9,7 +9,7 @@ import "./ShoppingLists.css";
 
 class ShoppingLists extends React.Component {
   render() {
-    if (LocalStorageManager.getShoppingLists().length <= 1) {
+    if (LocalStorageManager.getShoppingLists().length === 0) {
       return <FirstShoppingList/>
     }
 
