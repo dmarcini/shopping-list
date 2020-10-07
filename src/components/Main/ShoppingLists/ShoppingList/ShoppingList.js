@@ -7,7 +7,6 @@ import {
   ShoppingListModel,
   ShoppingListItemModel
 } from "../../../../js/shoppingList";
-
 import LocalStorageManager from "../../../../js/localStorageManager";
 
 import "./ShoppingList.css";
@@ -23,9 +22,12 @@ class ShoppingList extends React.Component {
 
   renderAddItem(id, value) {
     return (
-      <AddItem id={id} key={id} value={value}
-               onChange={this.handleChangeItem}
-               onClick={this.handleRemoveClick}
+      <AddItem
+        id={id}
+        key={id}
+        value={value}
+        onChange={this.handleChangeItem}
+        onClick={this.handleRemoveClick}
       />
     );
   }
@@ -41,8 +43,11 @@ class ShoppingList extends React.Component {
           <h1 id="list-name">{this.props.listName}</h1>
           <Container>
             {items}
-            <button id="add-item" type="button"
-                    onClick={this.handleClick}>
+            <button
+              id="add-item"
+              type="button"
+              onClick={this.handleClick}
+            >
               <span className="fas fa-plus"></span>
             </button>
           </Container>
@@ -55,7 +60,7 @@ class ShoppingList extends React.Component {
     event.preventDefault();
 
     const shoppingList = new ShoppingListModel(this.state.name,
-                                              this.state.items);
+                                               this.state.items);
 
     this.setState({
       items: [new ShoppingListItemModel("")]

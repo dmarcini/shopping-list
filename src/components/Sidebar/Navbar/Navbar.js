@@ -9,13 +9,22 @@ function Navbar() {
     <nav>
       <h1>Manage your shopping lists</h1>
       <ul>
-        <NavbarItem to="/home" class="fas fa-home">
+        <NavbarItem
+          to="/home"
+          class="fas fa-home"
+        >
           Home
         </NavbarItem>
-        <NavbarItem to="/shopping-lists" class="fas fa-cart-plus">
+        <NavbarItem
+          to="/shopping-lists"
+          class="fas fa-cart-plus"
+        >
           Shopping lists
         </NavbarItem>
-        <NavbarItem to="refuse-bin" class="fa fa-trash">
+        <NavbarItem
+          to="refuse-bin"
+          class="fa fa-trash"
+        >
           Refuse bin
         </NavbarItem>
       </ul>

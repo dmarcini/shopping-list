@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
-
 import { Container, Row, Col } from "react-bootstrap";
 
 import Header from "../Header/Header";

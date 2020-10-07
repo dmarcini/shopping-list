@@ -18,15 +18,23 @@ class AddItems extends React.Component {
 
     return (
       <Row className={"item " + disabled}>
-        <input className="item-name" type="text"
-               disabled={this.state.isChecked}
-               value={this.props.value}
-               onChange={(event) => this.props.onChange(event, this.props.id)}
+        <input
+          className="item-name"
+          type="text"
+          disabled={this.state.isChecked}
+          value={this.props.value}
+          onChange={(event) => this.props.onChange(event, this.props.id)}
         />
-        <input type="checkbox" onClick={this.handleClick}/>
-        <button class="remove-item" type="button"
-                onClick={(event) => this.props.onClick(event, this.props.id)}>
-          <span class="fa fa-trash"></span>
+        <input            
+          type="checkbox"
+          onClick={this.handleClick}
+        />
+        <button
+          className="remove-item"
+          type="button"
+          onClick={(event) => this.props.onClick(event, this.props.id)}
+        >
+          <span className="fa fa-trash"></span>
         </button>
       </Row>
     );

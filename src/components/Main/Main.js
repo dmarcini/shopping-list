@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Switch,
   Route,
@@ -12,18 +11,21 @@ import RefuseBin from "./RefuseBin/RefuseBin";
 
 function Main() {
   return (
-      <Switch>
-        <Route path="/home"
-               component={Home} exact>
-        </Route>
-        <Route path="/shopping-lists"
-               component={ShoppingLists} exact>
-        </Route>
-        <Route path="/refuse-bin"
-               component={RefuseBin} exact>
-        </Route>
-        <Redirect to="/home"></Redirect>
-      </Switch>
+    <Switch>
+      <Route
+        path="/home"
+        component={Home} exact
+      />
+      <Route
+        path="/shopping-lists"
+        component={ShoppingLists} exact
+      />
+      <Route
+        path="/refuse-bin"
+        component={RefuseBin} exact
+      />
+      <Redirect to="/home"></Redirect>
+    </Switch>
   );
 }
 

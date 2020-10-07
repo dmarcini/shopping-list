@@ -6,10 +6,11 @@ import {
 } from "../../../../assets/icons/shopping-list.svg"; 
 
 import ShoppingList from "../ShoppingList/ShoppingList";
-import ListNameModal from "../ListNameModal/ListNameModal"
+import ListNameModal from "../ListNameModal/ListNameModal";
+
+import LocalStorageManager from "../../../../js/localStorageManager";
 
 import "./FirstShoppingList.css";
-import LocalStorageManager from "../../../../js/localStorageManager";
 
 class FirstShoppingList extends React.Component {
   constructor(props) {
@@ -32,9 +33,10 @@ class FirstShoppingList extends React.Component {
 
   renderModal() {
     return (
-      <ListNameModal value={this.state.listName} 
-                     onChange={this.handleChange}
-                     onClick={this.handleClickModal}
+      <ListNameModal
+        value={this.state.listName} 
+        onChange={this.handleChange}
+        onClick={this.handleClickModal}
       />
     );
   }
