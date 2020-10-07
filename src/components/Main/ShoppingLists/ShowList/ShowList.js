@@ -1,41 +1,93 @@
 import React from "react";
 
+import LocalStorageManager from "../../../../js/localStorageManager";
+
 import "./ShowList.css";
 
-function ShowList(props) {
-  const listType = props.listType;
+class ShowList  extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const shouldShowEditListTitleButton = (listType === "removed") ? false : true;
-  const thrashIconClass = (listType === "removed") ? "fas fa-trash-restore" :
-                                                     "fa fa-trash";
+    this.state = {
+      isTitleEditable: false,
+      title: this.props.list.title
+    }
+  }
 
-  return (
-    <div
-        key={props.list.id}
-        className="list"
-        onClick={props.onClickShowList}
-      >
-        <h1 className="list-title">
-          {props.list.title}
-          <button
-            className="list-title-edit"
-            title="Edit list title"
-            onClick={props.onClickEditTitle}
-            hidden={!shouldShowEditListTitleButton}
-          >
-            <span className="fas fa-edit"></span>
-          </button>
-        </h1>
-        <span className="list-length">0 / {props.list.items.length}</span>
-        <button 
-          className="list-remove"
-          onClick={(event) => props.onClickRemoveList(event, props.list.id)}
+  render() {
+    const listType = this.props.listType;
+
+    const shouldShowEditListTitleButton = (listType === "removed") ? false
+                                                                   : true;
+    const thrashIconClass = (listType === "removed") ? "fas fa-trash-restore" :
+                                                       "fa fa-trash";
+
+    return (
+      <div
+          key={this.props.list.id}
+          className="list"
+          onClick={this.props.onClickShowList}
         >
-          <span className={thrashIconClass}></span>
-        </button>
-         <div className="line"></div>
-      </div>
-  );
+          <div className="list-title-container">
+            <input
+              className="list-title"
+              placeholder={this.props.list.title}
+              value={this.state.title}
+              disabled={true}
+              onChange={this.handleChange}
+              onBlur={(event) => this.handleBlur(event)}
+            />
+            <button
+              className="list-title-edit"
+              title="Edit list title"
+              onClick={(event) => this.handleClickEditTitle(event)}
+              hidden={!shouldShowEditListTitleButton}
+            >
+              <span className="fas fa-edit"></span>
+            </button>
+          </div>
+          <span className="list-length">
+            0 / {this.props.list.items.length}
+          </span>
+          <button 
+            className="list-remove"
+            onClick={(event) => (
+              this.props.onClickRemoveList(event, this.props.list.id)
+            )}
+          >
+            <span className={thrashIconClass}></span>
+          </button>
+           <div className="line"></div>
+        </div>
+    );
+  }
+ 
+  handleClickEditTitle = (event) => {
+    this.setState((state) => ({isTitleEditable: !state.isTitleEditable}));
+
+    const disabled = event.currentTarget.parentElement.firstChild.disabled;
+
+    event.currentTarget.parentElement.firstChild.disabled = !disabled;
+    event.currentTarget.parentElement.firstChild.focus();
+  }
+
+  handleChange = (event) => {
+    this.setState({title: event.target.value});
+  }
+
+  handleBlur = (event) => {
+    this.setState((state) => ({isTitleEditable: !state.isTitleEditable}));
+
+    const disabled = event.currentTarget.parentElement.firstChild.disabled;
+
+    event.currentTarget.parentElement.firstChild.disabled = !disabled;
+
+    const list = LocalStorageManager.getShoppingList(this.props.list.id);
+
+    list.title = this.state.title;
+
+    LocalStorageManager.updateShoppingList(list, this.props.list.id);
+  }
 }
 
 export default ShowList;

@@ -1,0 +1,96 @@
+.list {
+  display: block;
+  position: relative;
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  width: 100%;
+  max-width: 700px;
+  height: 90px;
+  margin: 0 auto 30px auto;
+  border: 2px solid var(--primary-dark-color);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.list:hover {
+  box-shadow: 0 0 15px 2px var(--primary-dark-color);
+  opacity: 0.9;
+}
+
+.list:focus {
+  outline: none;
+}
+
+.list-title-container {
+  position: relative;
+}
+
+.list-title, .list-title-edit, .list-length, .list-remove {
+  position: absolute;
+  top: 10px;
+  background-color: inherit;
+  color: var(--text-color);
+  font-size: 1.25em;
+  border: none;
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+.list-title {
+  position: relative;
+  top: 15px;
+  left: 25px;
+  max-width: 200px;
+}
+
+.list-title:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary-dark-color);
+}
+
+.list-title-edit {
+  position: relative;
+  font-size: 0.875em;
+  width: 32px;
+  height: 32px;
+  margin-left: 40px;
+  border-radius: 50%;
+}
+
+.list-title-edit:hover {
+  background-color: var(--primary-dark-color);
+  opacity: 0.6;
+}
+
+.list-title-edit:focus {
+  outline: none;
+}
+
+.list-length {
+  right: 60px;
+}
+
+.list-remove {
+  right: 20px;
+  background-color: inherit;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+}
+
+.list-remove:hover {
+  background-color: var(--primary-dark-color);
+  opacity: 0.6;
+}
+
+.list-remove:focus {
+  outline: none;
+}
+
+.line {
+  margin: 20px 20px 0 20px;
+  border-top: 2px solid var(--text-color);
+}
