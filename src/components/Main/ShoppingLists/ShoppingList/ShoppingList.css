@@ -1,38 +1,36 @@
-section {
-  padding: 100px 500px 0 250px;
+main form {
+  padding: 3% 15% 0 15%;
+}
+
+#list-name, #list-name input, #add-item, #submit {
+  color: var(--text-color);
+}
+
+#list-name input, #add-item, #submit {
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  outline: none;
 }
 
 #list-name {
-  color: var(--text-color);
-  font-size: 1.25em;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+  color: var(--primary-dark-color);
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: none;
+  text-align: left;
+  margin: 20px 0 10px 0;
+  padding: 0;
 }
 
 #list-name input {
-  background: linear-gradient(var(--primary-light-color),
-                              var(--primary-dark-color));
-  color: var(--text-color);
   font-size: 0.75em;
-  width: 515px;
-  margin-left: 20px;
   padding: 5px;
-  outline: none;
   border: none;
-}
-
-#items-group {
-  width: 650px;
-  margin-top: 40px;
 }
 
 #add-item, #submit {
   display: block;
-  background: linear-gradient(var(--primary-light-color),
-                              var(--primary-dark-color));
-  color: var(--text-color);
   border: 1px solid var(--primary-dark-color);
-  outline: none;
 }
 
 #add-item:hover, #submit:hover {
@@ -43,15 +41,8 @@ section {
 #add-item { 
   width: 40px;
   height: 40px;
-  font-size: 2em;
-  border-radius: 50%;
-  margin: 20px auto 0 auto;
-}
-
-#submit {
-  width: 100%;
-  height: 40px;
   font-size: 1em;
-  text-transform: uppercase;
-  margin: 50px auto 0 auto;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 20px auto 0 auto;
 }

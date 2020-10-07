@@ -1,6 +1,6 @@
 .nav-item {
   display: block;
-  width: 250px;
+  width: 100%;
   padding: 0;
 }
 
@@ -31,10 +31,16 @@
 .nav-item a {
   display: block;
   color: var(--text-color);
-  font-size: 0.75em;
+  font-size: 0.875em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 10px;
+}
+
+.nav-item a:hover {
+  color: var(--text-color);
+  font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
 }
 

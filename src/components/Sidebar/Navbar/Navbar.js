@@ -18,9 +18,6 @@ function Navbar() {
         <NavbarItem to="refuse-bin" class="fa fa-trash">
           Refuse bin
         </NavbarItem>
-        <NavbarItem to="about" class="fas fa-info-circle">
-          About
-        </NavbarItem>
       </ul>
     </nav>
   );

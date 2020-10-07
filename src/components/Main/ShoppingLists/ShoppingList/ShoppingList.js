@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Container } from "react-bootstrap";
 
 import AddItem from "../AddItem/AddItem";
 
@@ -31,21 +32,22 @@ class ShoppingList extends React.Component {
 
   render() {
     const items = this.state.items.map((item) => {
-      return this.renderAddItem(item.id, item.name)
+      return this.renderAddItem(item.id, item.name);
     });
 
     return (
-      <section>
+      <main>
         <form onSubmit={this.handleSubmit}>
-          <h1>{this.props.listName}</h1>
-          <div id="items-group">
+          <h1 id="list-name">{this.props.listName}</h1>
+          <Container>
             {items}
             <button id="add-item" type="button"
-                    onClick={this.handleClick}>+</button>
-            <button id="submit" type="submit">Save</button>
-          </div>
+                    onClick={this.handleClick}>
+              <span className="fas fa-plus"></span>
+            </button>
+          </Container>
         </form>
-      </section>
+      </main>
     ) 
   }
 

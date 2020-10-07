@@ -3,11 +3,12 @@ import * as ReactDOM from "react-dom";
 
 import App from "./components/App/App";
 
-import "./css/index.css";
-import "./css/fontawesome/all.min.css";
-
 import * as serviceWorker from "./js/serviceWorker";
 import LocalStorageManager from "./js/localStorageManager";
+
+import "./css/index.css";
+import "./css/fontawesome/all.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 localStorage.removeItem("shoppingLists");
 

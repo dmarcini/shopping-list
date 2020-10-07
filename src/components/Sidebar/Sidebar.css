@@ -1,9 +1,12 @@
+aside, nav, ul {
+  position: relative;
+  width: 100%;
+}
+
 aside {
-  position: fixed;
   background: linear-gradient(to left, var(--secondary-light-color),
                               var(--secondary-dark-color));
   color: var(--text-color);
-  width: 250px;
-  height: 100%;
+  height: 622px;
   box-shadow: 0 0 10px var(--secondary-light-color);
 }

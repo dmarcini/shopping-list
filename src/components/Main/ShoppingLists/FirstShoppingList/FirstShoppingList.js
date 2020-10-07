@@ -1,31 +1,27 @@
 import * as React from "react";
+import { Container, Row } from "react-bootstrap";
 
 import {
   ReactComponent as ListImage
 } from "../../../../assets/icons/shopping-list.svg"; 
 
-import Modal from "./Modal/Modal"
+import ShoppingList from "../ShoppingList/ShoppingList";
+import ListNameModal from "../ListNameModal/ListNameModal"
 
 import "./FirstShoppingList.css";
-import ShoppingList from "../ShoppingList/ShoppingList";
+import LocalStorageManager from "../../../../js/localStorageManager";
 
 class FirstShoppingList extends React.Component {
   constructor(props) {
     super(props);
 
+    const isFirstList = LocalStorageManager.getShoppingLists().length <= 1;
+
     this.state = {
+      shouldRenderShoppingList: !isFirstList,
       shouldRenderModal: false,
-      shouldRenderShoppingList: false,
       listName: ""
     }
-  }
-
-  renderModal() {
-    return (
-      <Modal value={this.state.listName} 
-             onChange={this.state.handleChange}
-             onClick={this.handleClickModal}/>
-    );
   }
 
   renderShoppingList() {
@@ -34,25 +30,46 @@ class FirstShoppingList extends React.Component {
     )
   }
 
-  render() {
-    if (this.state.shouldRenderModal) {
-      return this.renderModal();
-    }
-
-    if (this.state.shouldRenderShoppingList) {
-      return this.renderShoppingList();
-    }
-
+  renderModal() {
     return (
+      <ListNameModal value={this.state.listName} 
+                     onChange={this.handleChange}
+                     onClick={this.handleClickModal}
+      />
+    );
+  }
+
+  renderFirstShoppingList() {
+     return (
       <main>
-        <ListImage id="list-img"/>
-        <h1>Create your first shopping list</h1>
-        <button onClick={this.handleClick}>Create list</button>
+        <Container>
+          <Row>
+            <ListImage id="list-img"/>
+          </Row>
+          <Row>
+            <h1>Create your first shopping list</h1>
+          </Row>
+          <Row>
+            <button onClick={this.handleClickCreateList}>Create list</button>
+          </Row>
+        </Container>
       </main>
     );
   }
 
-  handleClick = () => {
+  render() {
+    if (this.state.shouldRenderShoppingList) {
+      return this.renderShoppingList();
+    }
+
+    if (this.state.shouldRenderModal) {
+      return this.renderModal();
+    }
+
+    return this.renderFirstShoppingList();
+  }
+
+  handleClickCreateList = () => {
     this.setState({shouldRenderModal: true});
   }
 
