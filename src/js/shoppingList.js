@@ -5,6 +5,7 @@ class ShoppingListModel {
     this.id = LocalStorageManager.getIDCounter();
     this.title = title;
     this.items = items;
+    this.expirationDate = null;
   }
 }
 

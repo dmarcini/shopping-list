@@ -6,28 +6,36 @@ import Sidebar from "../Sidebar/Sidebar";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 
+import LocalStorageManager from "../../js/localStorageManager";
+
 import "./App.css";
 
-function App() {
-  return (
-    <Container id="app" fluid>
-      <BrowserRouter>
-        <Container fluid>
-          <Row>
-            <Col id="sidebar" xs={12} md={3}>
-              <Sidebar/>
-            </Col>
-            <Col id= "main" xs={12} md={9}>
-              <Main/>
-            </Col>
-          </Row>
-          <Row id="footer">
-            <Footer/>
-          </Row>
-        </Container>
-      </BrowserRouter>
-    </Container>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    LocalStorageManager.removeListsWithExpirationDateExceeded();
+  }
+
+  render() {
+    return (
+      <Container id="app" fluid>
+        <BrowserRouter>
+          <Container fluid>
+            <Row>
+              <Col id="sidebar" xs={12} md={3}>
+                <Sidebar/>
+              </Col>
+              <Col id= "main" xs={12} md={9}>
+                <Main/>
+              </Col>
+            </Row>
+            <Row id="footer">
+              <Footer/>
+            </Row>
+          </Container>
+        </BrowserRouter>
+      </Container>
+    );
+  }  
 }
 
 export default App;

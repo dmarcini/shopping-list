@@ -5,6 +5,8 @@ class LocalStorageManager {
     this.removedShoppingLists = [];
   }
 
+  static EXPIRATION_DAYS = 30;
+    
   static addShoppingList(shoppingList) {
     const localStorageManager = this.getInstance();
 
@@ -84,6 +86,19 @@ class LocalStorageManager {
     return removedShoppingLists;
   }
 
+  static removeListsWithExpirationDateExceeded() {
+    const localStorageManager = this.getInstance();
+
+    const filteredRemovedShoppingLists =
+      localStorageManager.removedShoppingLists.filter(removedShoppingList => {
+        return new Date(removedShoppingList.expirationDate) > new Date();
+      })
+
+    localStorageManager.removedShoppingLists = filteredRemovedShoppingLists;
+
+    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
+  }
+
   static getIDCounter() {
     return JSON.parse(localStorage.getItem("shoppingLists")).idCounter;
   }
@@ -108,6 +123,16 @@ class LocalStorageManager {
 
     if (toInstance === undefined) {
       toInstance = [];
+    }
+
+    if (to === "removedShoppingLists") {
+      const date = new Date();
+
+      date.setDate(date.getDate() + this.EXPIRATION_DAYS);
+
+      fromInstance[index].expirationDate = date;
+    } else {
+      fromInstance[index].expirationDate = null;
     }
 
     toInstance.push(fromInstance[index]);
