@@ -19,7 +19,7 @@ class RefuseBin extends React.Component {
     const removedLists = LocalStorageManager.getRemovedShoppingLists();
 
     return (
-      <div id="lists">
+      <div id="removed-lists">
         {removedLists.map(list => (
           <ShowList
             key={list.id}

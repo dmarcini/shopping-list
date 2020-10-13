@@ -1,13 +1,10 @@
 import * as React from "react";
 import { Container } from "react-bootstrap";
 
-import AddItem from "../AddItem/AddItem";
+import ListItem from "../ListItem/ListItem";
 
-import {
-  ShoppingListModel,
-  ShoppingListItemModel
-} from "../../../../js/shoppingList";
 import LocalStorageManager from "../../../../js/localStorageManager";
+import { ShoppingListItemModel } from "../../../../js/shoppingList";
 
 import "./ShoppingList.css";
 
@@ -15,59 +12,51 @@ class ShoppingList extends React.Component {
   constructor(props) {
     super(props);
 
+    const items = LocalStorageManager.getShoppingList(this.props.list.id)
+                                     .items;
+
+    const lastItem = items[items.length - 1];
+    const lastItemID = lastItem === undefined ? 0 : lastItem.id;
+
     this.state = {
-      items: [new ShoppingListItemModel("")]
+      idItemCounter: lastItemID + 1,
+      items: [...items]
     }
   }
 
-  renderAddItem(id, value) {
+  renderListItem(id, value) {
     return (
-      <AddItem
+      <ListItem
         id={id}
         key={id}
         value={value}
         onChange={this.handleChangeItem}
-        onClick={this.handleRemoveClick}
+        onBlur={this.handleBlurUpdateItem}
+        onClick={this.handleClickRemove}
       />
     );
   }
 
   render() {
     const items = this.state.items.map((item) => {
-      return this.renderAddItem(item.id, item.name);
+      return this.renderListItem(item.id, item.name);
     });
 
     return (
       <main>
-        <form onSubmit={this.handleSubmit}>
-          <h1 id="list-name">{this.props.listName}</h1>
-          <Container>
-            {items}
-            <button
-              id="add-item"
-              type="button"
-              onClick={this.handleClick}
-            >
-              <span className="fas fa-plus"></span>
-            </button>
-          </Container>
-        </form>
+        <h1 id="list-name">{this.props.list.title}</h1>
+        <Container>
+          {items}
+          <button
+            id="add-item"
+            type="button"
+            onClick={this.handleClickAddItem}
+          >
+            <span className="fas fa-plus"></span>
+          </button>
+        </Container>
       </main>
     ) 
-  }
-
-  /*
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const shoppingList = new ShoppingListModel(this.state.name,
-                                               this.state.items);
-
-    this.setState({
-      items: [new ShoppingListItemModel("")]
-    });
-
-    LocalStorageManager.addShoppingList(shoppingList);
   }
 
   handleChangeItem = (event, id) => {
@@ -78,21 +67,31 @@ class ShoppingList extends React.Component {
     this.setState({items: items});
   }
 
-  handleClick = (event) => {
+  handleClickAddItem = (event) => {
     event.preventDefault();
 
-    const items = [...this.state.items, new ShoppingListItemModel("")];
+    const items = [...this.state.items,
+                   new ShoppingListItemModel(this.state.idItemCounter, "")];
 
-    this.setState({items: items});
+    this.setState((state) => ({
+      idItemCounter: state.idItemCounter + 1,
+      items: items
+    }));
   }
 
-  handleRemoveClick = (event, id) => {
+  handleBlurUpdateItem = () => {
+    LocalStorageManager.updateItems(this.props.list.id, this.state.items);
+  }
+
+  handleClickRemove = (event, id) => {
     event.preventDefault();
 
     const items = this.state.items.filter(item => item.id !== id);
 
     this.setState({items: items});
-  }*/
+
+    LocalStorageManager.updateItems(this.props.list.id, items);
+  }
 }
 
 export default ShoppingList;

@@ -6,24 +6,12 @@ class ShoppingListModel {
     this.title = title;
     this.items = items;
   }
-
-  addItem(item) {
-    this.items.push(item);;
-  }
 }
 
 class ShoppingListItemModel {
-  constructor(name) {
-    this.id = Counter.getAndIncrement();
+  constructor(id, name) {
+    this.id = id;
     this.name = name;
-  }
-}
-
-class Counter {
-  static #count = 0;
-
-  static getAndIncrement() {
-    return this.#count++;
   }
 }
 

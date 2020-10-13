@@ -1,3 +1,10 @@
-.list:hover {
+#removed-lists {
+  padding: 50px;
+}
+
+
+#removed-lists .list:hover {
   opacity: 1;
+  box-shadow: none;
+  cursor: auto;
 }

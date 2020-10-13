@@ -37,6 +37,17 @@ class LocalStorageManager {
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
   }
 
+  static updateItems(id, items) {
+    const localStorageManager = this.getInstance();
+    const shoppingLists = localStorageManager.shoppingLists;
+
+    shoppingLists.find(shoppingList => shoppingList.id === id).items = items;
+
+    localStorageManager.shoppingLists = shoppingLists;
+
+    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
+  }
+
   static removeShoppingList(id) {
     this.moveShoppingList(id, "shoppingLists", "removedShoppingLists");
   }
@@ -52,15 +63,12 @@ class LocalStorageManager {
     return shoppingLists.find(shoppingList => shoppingList.id === id);
   }
 
-  static getLastShoppingList() {
-    const listsNumber = this.getShoppingLists().length();
-
-    return this.getShoppingLists()[listsNumber - 1];
-  }
-
   static getShoppingLists() {
     const localStorageManager = this.getInstance();
-    const shoppingLists = localStorageManager.shoppingLists;
+    const shoppingLists = 
+      localStorageManager.shoppingLists.filter(shoppingList => {
+        return shoppingList !== undefined && shoppingList !== null;
+      });
 
     return shoppingLists;
   }

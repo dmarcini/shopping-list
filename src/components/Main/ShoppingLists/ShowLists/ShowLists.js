@@ -1,5 +1,6 @@
 import React from "react";
 
+import FirstShoppingList from "../FirstShoppingList/FirstShoppingList";
 import ListNameModal from "../ListNameModal/ListNameModal";
 import ShoppingList from "../ShoppingList/ShoppingList";
 import ShowList from "../ShowList/ShowList";
@@ -14,11 +15,16 @@ class ShowLists extends React.Component {
     super(props);
 
     this.state = {
+      shouldRenderFirstShoppingList: false,
       shouldRenderListNameModal: false,
       shouldRenderShoppingList: false,
       listName: "",
       list: null
     }
+  }
+
+  renderFirstShoppingList() {
+    return <FirstShoppingList/>
   }
 
   renderListNameModal() {
@@ -45,7 +51,7 @@ class ShowLists extends React.Component {
         key={list.id}
         list={list}
         listType="actual"
-        onClickShowList={this.handleClickShowList}
+        onClickShowList={(event) => {this.handleClickShowList(event, list.id)}}
         onClickEditTitle={this.handleClickEditTitle}
         onClickRemoveList={this.handleClickRemoveList}
       />
@@ -53,6 +59,10 @@ class ShowLists extends React.Component {
   }
 
   render() {
+    if (this.state.shouldRenderFirstShoppingList) {
+      return this.renderFirstShoppingList();
+    }
+
     if (this.state.shouldRenderListNameModal) {
       return this.renderListNameModal();
     }
@@ -74,20 +84,32 @@ class ShowLists extends React.Component {
     );
   }
 
-  handleClickShowList = () => {
+  handleClickShowList = (event, id) => {
+    const list = LocalStorageManager.getShoppingList(id);
 
+    this.setState({
+      shouldRenderShoppingList: true,
+      list: list
+    });
   }
 
   handleClickRemoveList = (event, id) => {
-    this.setState({
-      shouldRenderShoppingList: false
-    });
+    event.stopPropagation();
 
     LocalStorageManager.removeShoppingList(id);
+
+    if (LocalStorageManager.getShoppingLists().length === 0) {
+      this.setState({shouldRenderFirstShoppingList: true});
+    }
+
+    this.setState({shouldRenderShoppingList: false});
   }
 
   handleClickAddList = () => {
-    this.setState({shouldRenderListNameModal: true});
+    this.setState({
+      shouldRenderFirstShoppingList: false,
+      shouldRenderListNameModal: true
+    });
   }
 
   handleClickModal = () => {
@@ -96,6 +118,7 @@ class ShowLists extends React.Component {
     LocalStorageManager.addShoppingList(newList);
 
     this.setState({
+      shouldRenderFirstShoppingList: false,
       shouldRenderListNameModal: false,
       shouldRenderShoppingList: true,
       list: newList

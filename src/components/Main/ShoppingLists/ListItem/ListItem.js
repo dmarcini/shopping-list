@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Row } from "react-bootstrap";
 
-import "./AddItem.css";
+import "./ListItem.css";
 
-class AddItems extends React.Component {
+class ListItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,6 +25,7 @@ class AddItems extends React.Component {
           disabled={this.state.isChecked}
           value={this.props.value}
           onChange={(event) => this.props.onChange(event, this.props.id)}
+          onBlur={this.props.onBlur}
         />
         <label className="checkbox">
           <input
@@ -54,4 +55,4 @@ class AddItems extends React.Component {
   }
 }
 
-export default AddItems;
+export default ListItem;

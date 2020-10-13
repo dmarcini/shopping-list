@@ -63,6 +63,8 @@ class ShowList  extends React.Component {
   }
  
   handleClickEditTitle = (event) => {
+    event.stopPropagation();
+
     this.setState((state) => ({isTitleEditable: !state.isTitleEditable}));
 
     const disabled = event.currentTarget.parentElement.firstChild.disabled;
