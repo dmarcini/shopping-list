@@ -1,14 +1,13 @@
 import * as React from "react";
-import { Container } from "react-bootstrap";
 
-import ListItem from "../ListItem/ListItem";
+import ListItem from "./ListItem/ListItem";
 
 import LocalStorageManager from "../../../../js/localStorageManager";
 import { ShoppingListItemModel } from "../../../../js/shoppingList";
 
-import "./ShoppingList.css";
+import "./ListItems.css";
 
-class ShoppingList extends React.Component {
+class ListItems extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +31,7 @@ class ShoppingList extends React.Component {
         value={value}
         onChange={this.handleChangeItem}
         onBlur={this.handleBlurUpdateItem}
-        onClick={this.handleClickRemove}
+        onClick={this.handleClickRemoveItem}
       />
     );
   }
@@ -44,8 +43,7 @@ class ShoppingList extends React.Component {
 
     return (
       <main>
-        <h1 id="list-name">{this.props.list.title}</h1>
-        <Container>
+        <div class="items">
           {items}
           <button
             id="add-item"
@@ -54,7 +52,7 @@ class ShoppingList extends React.Component {
           >
             <span className="fas fa-plus"></span>
           </button>
-        </Container>
+        </div>
       </main>
     ) 
   }
@@ -83,7 +81,7 @@ class ShoppingList extends React.Component {
     LocalStorageManager.updateItems(this.props.list.id, this.state.items);
   }
 
-  handleClickRemove = (event, id) => {
+  handleClickRemoveItem = (event, id) => {
     event.preventDefault();
 
     const items = this.state.items.filter(item => item.id !== id);
@@ -94,4 +92,4 @@ class ShoppingList extends React.Component {
   }
 }
 
-export default ShoppingList;
+export default ListItems;

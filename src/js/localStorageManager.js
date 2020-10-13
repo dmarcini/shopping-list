@@ -30,7 +30,11 @@ class LocalStorageManager {
     const localStorageManager = this.getInstance();
     const shoppingLists = localStorageManager.shoppingLists;
 
-    shoppingLists[id] = shoppingList;
+    const indexListToUpdate = shoppingLists.findIndex(shoppingList => {
+      return shoppingList.id === id
+    });
+
+    shoppingLists[indexListToUpdate] = shoppingList;
 
     localStorageManager.shoppingLists = shoppingLists;
 

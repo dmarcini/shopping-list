@@ -1,5 +1,8 @@
 .item {
   position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 0 auto !important;
 }
 
 .disabled .item-name, .disabled .remove-item {
@@ -24,17 +27,6 @@ span .hidden {
   height: 50px;
   border: none;
   border-bottom: 2px solid var(--primary-dark-color);
-}
-
-.item:first-child .item-name {
-  border-top: 2px solid var(--primary-dark-color);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.item:last-of-type .item-name {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 }
 
 .checkbox {

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ShowList from "../ShoppingLists/ShowList/ShowList";
+import ShowList from "../ShoppingLists/List/List";
 
 import LocalStorageManager from "../../../js/localStorageManager";
 

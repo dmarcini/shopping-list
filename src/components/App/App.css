@@ -44,10 +44,4 @@
   #sidebar {
     width: 20% !important;
   }
-
-  #main, #main main {
-    margin-left: -5%;
-    padding-left: 5%;
-  }
-
 }

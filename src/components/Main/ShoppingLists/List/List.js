@@ -2,9 +2,9 @@ import React from "react";
 
 import LocalStorageManager from "../../../../js/localStorageManager";
 
-import "./ShowList.css";
+import "./List.css";
 
-class ShowList  extends React.Component {
+class List  extends React.Component {
   constructor(props) {
     super(props);
 
@@ -91,4 +91,4 @@ class ShowList  extends React.Component {
   }
 }
 
-export default ShowList;
+export default List;

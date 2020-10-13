@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./Home/Home";
-import ShoppingLists from "./ShoppingLists/ShoppingLists";
+import ShoppingLists from "./ShoppingLists/Lists";
 import RefuseBin from "./RefuseBin/RefuseBin";
 
 function Main() {
