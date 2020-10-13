@@ -1,15 +1,20 @@
 import * as React from "react";
 import { Row } from "react-bootstrap";
 
+import LocalStorageManager from "../../../../../../js/localStorageManager";
+
 import "./ListItem.css";
 
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
 
+    const item = LocalStorageManager.getItem("actual", this.props.idList,
+                                             this.props.id);
+
     this.state = {
       value: "",
-      isChecked: false
+      isChecked: item === undefined ? false : item.isChecked
     }
   }
 
@@ -52,6 +57,19 @@ class ListItem extends React.Component {
     this.setState((state) => ({
       isChecked: !state.isChecked
     }));
+
+    const item = LocalStorageManager.getItem("actual", this.props.idList,
+                                             this.props.id);
+
+    if (item === undefined) {
+      return;
+    }
+
+    item.isChecked = !this.state.isChecked;
+
+    LocalStorageManager.updateItem(this.props.idList, this.props.id, item);
+
+    this.props.switchItemChange();
   }
 }
 

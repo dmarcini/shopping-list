@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ShowList from "../ShoppingLists/List/List";
+import List from "../ShoppingLists/List/List";
 
 import LocalStorageManager from "../../../js/localStorageManager";
 
@@ -21,7 +21,7 @@ class RefuseBin extends React.Component {
     return (
       <div id="removed-lists">
         {removedLists.map(list => (
-          <ShowList
+          <List
             key={list.id}
             list={list}
             listType="removed"

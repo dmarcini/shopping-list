@@ -2,7 +2,6 @@ import React from "react";
 
 import FirstListDialog from "./FirstListDialog/FirstListDialog";
 import ListNameModal from "./ListNameModal/ListNameModal";
-import ListItems from "./ListItems/ListItems";
 import List from "./List/List";
 
 import LocalStorageManager from "../../../js/localStorageManager";
@@ -20,8 +19,8 @@ class Lists extends React.Component {
     this.state = {
       shouldRenderFirstListDialog: shouldRenderFirstListDialog,
       shouldRenderListNameModal: false,
-      listsToItemsRender: [],
-      listName: ""
+      listName: "",
+      listChangeSwitch: false
     }
   }
 
@@ -43,31 +42,14 @@ class Lists extends React.Component {
     const lists = LocalStorageManager.getShoppingLists();
 
     return lists.map(list => {
-      const shouldRenderListItems =
-        this.state.listsToItemsRender.some(listToItemsRender => {
-          return listToItemsRender.id === list.id
-        });
-
-      let listItems = null;
-
-      if (shouldRenderListItems) {
-        listItems = <ListItems list={list}/>
-      }
-
       return (
-        <div>
-          <List
-            key={list.id}
-            list={list}
-            listType="actual"
-            onClickShowList={(event) => {this.handleClickShowList(event, list.id)}}
-            onClickEditTitle={this.handleClickEditTitle}
-            onClickRemoveList={this.handleClickRemoveList}
-          />
-          {listItems}
-        </div>
+        <List
+          key={list.id}
+          list={list}
+          listType="actual"
+          onClickRemoveList={this.handleClickRemoveList}
+        />
       );
-      
     });
   }
 
@@ -100,27 +82,6 @@ class Lists extends React.Component {
     });
   }
 
-  handleClickShowList = (event, id) => {
-    const list = LocalStorageManager.getShoppingList(id);
-    const areListItemsShown = this.state.listsToItemsRender.some(list => {
-      return list.id === id;
-    });
-
-    let listsToItemsRender;
-
-    if (!areListItemsShown) {
-      listsToItemsRender = [...this.state.listsToItemsRender, list];
-    } else {
-      listsToItemsRender =
-        this.state.listsToItemsRender.filter(list => list.id !== id);
-    }
-
-    this.setState({
-      shouldRenderShoppingList: true,
-      listsToItemsRender: listsToItemsRender
-    });
-  }
-
   handleClickRemoveList = (event, id) => {
     event.stopPropagation();
 
@@ -130,7 +91,9 @@ class Lists extends React.Component {
       this.setState({shouldRenderFirstListDialog: true});
     }
 
-    this.setState({shouldRenderShoppingList: false});
+    this.setState((state) => ({
+      listChangeSwitch: !state.listChangeSwitch
+    }))
   }
 
   handleClickAddList = () => {
@@ -146,9 +109,7 @@ class Lists extends React.Component {
 
     this.setState({
       shouldRenderFirstListDialog: false,
-      shouldRenderListNameModal: false,
-      shouldRenderShoppingList: true,
-      list: newList
+      shouldRenderListNameModal: false
     });
   }
 

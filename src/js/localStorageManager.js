@@ -54,6 +54,23 @@ class LocalStorageManager {
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
   }
 
+  static updateItem(listID, itemID, item) {
+    const localStorageManager = this.getInstance();
+    const shoppingLists = localStorageManager.shoppingLists;
+    const listIndex = shoppingLists.findIndex(shoppingList => {
+        return shoppingList.id === listID;
+    });
+    const itemIndex = shoppingLists[listIndex].items.findIndex(item => {
+      return item.id === itemID;
+    })
+
+    shoppingLists[listIndex].items[itemIndex] = item;
+
+    localStorageManager.shoppingLists = shoppingLists;
+
+    localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager));
+  }
+
   static removeShoppingList(id) {
     this.moveShoppingList(id, "shoppingLists", "removedShoppingLists");
   }
@@ -63,27 +80,44 @@ class LocalStorageManager {
   }
 
   static getShoppingList(id) {
-    const localStorageManager = this.getInstance();
-    const shoppingLists = localStorageManager.shoppingLists;
-
-    return shoppingLists.find(shoppingList => shoppingList.id === id);
+    return this.getShoppingLists().find(shoppingList => {
+      return shoppingList.id === id
+    });
   }
 
   static getShoppingLists() {
-    const localStorageManager = this.getInstance();
-    const shoppingLists = 
-      localStorageManager.shoppingLists.filter(shoppingList => {
+    return this.getInstance().shoppingLists.filter(shoppingList => {
         return shoppingList !== undefined && shoppingList !== null;
       });
+  }
 
-    return shoppingLists;
+  static getRemovedShoppingList(id) {
+    return this.getRemovedShoppingLists().find(shoppingList => {
+      return shoppingList.id === id
+    });
   }
 
   static getRemovedShoppingLists() {
-    const localStorageManager = this.getInstance();
-    const removedShoppingLists = [...localStorageManager.removedShoppingLists];
+    return this.getInstance().removedShoppingLists
+                             .filter(removedShoppingList => {
+      return removedShoppingList !== undefined && removedShoppingList !== null;
+    });
+  }
 
-    return removedShoppingLists;
+  static getItems(listType, id) {
+    if (listType === "actual") {
+      return this.getShoppingList(id).items;
+    }
+
+    return this.getRemovedShoppingList(id).items;
+  }
+
+  static getItem(listType, listID, itemID) {
+    if (listType === "actual") {
+      return this.getItems("actual", listID).find(item => item.id === itemID);
+    }
+
+    return this.getItems("removed", listID).find(item => item.id === itemID);
   }
 
   static removeListsWithExpirationDateExceeded() {
