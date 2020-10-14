@@ -40,7 +40,7 @@ class Lists extends React.Component {
 
   renderLists() {
     return (
-      <div id="lists">
+      <main id="lists">
         {LocalStorageManager.getShoppingLists().map(list => (
           <List
             key={list.id}
@@ -55,7 +55,7 @@ class Lists extends React.Component {
         >
           <span className="fas fa-plus"></span>
         </button>
-      </div>
+      </main>
     );
   }
 

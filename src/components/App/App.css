@@ -1,4 +1,5 @@
 #app {
+  background: var(--auxiliary-color);
   height: 100%;
   padding: 0;
   margin: 0;

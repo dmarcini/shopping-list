@@ -85,7 +85,6 @@ class List extends React.Component {
             >
               <span className={thrashIconClass}></span>
             </button>
-            <div className="line"></div>
           </div>
           {listItems}
         </div>

@@ -1,9 +1,6 @@
-#lists {
-  padding: 50px;
-}
-
 #add-list {
   display: block;
+  position: relative;
   background: linear-gradient(var(--primary-light-color),
                               var(--primary-dark-color));
   color: var(--text-color);
@@ -20,4 +17,10 @@
 
 #add-list:focus {
   outline: none;
+}
+
+#add-list span {
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }

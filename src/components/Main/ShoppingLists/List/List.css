@@ -1,37 +1,39 @@
 .list {
   display: block;
   position: relative;
-  background: linear-gradient(var(--primary-light-color),
-                              var(--primary-dark-color));
   width: 100%;
   max-width: 700px;
   margin: 30px auto 0 auto;
-  border: 2px solid var(--primary-dark-color);
   cursor: pointer;
 }
 
-.list:hover {
-  box-shadow: 0 0 15px 2px var(--primary-dark-color);
-  opacity: 0.9;
-}
-
-.list:focus {
-  outline: none;
-}
-
 .list .description {
-  height: 90px;
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
+  height: 65px;
+  border: 2px solid var(--primary-dark-color);
+}
+
+.list .description:hover {
+  box-shadow: 0 0 10px 1px var(--primary-dark-color);
+}
+
+.list .description:focus {
+  outline: none;
 }
 
 .list-title-container {
   position: relative;
 }
 
+.list-title, .list-title-edit {
+  background: inherit;
+}
+
 .list-title, .list-title-edit, .list-length, 
 .list-remove, .list-days-to-expiration {
   position: absolute;
   top: 10px;
-  background-color: inherit;
   color: var(--text-color);
   font-size: 1.25em;
   border: none;
@@ -42,10 +44,10 @@
 }
 
 .list-title {
-  position: relative;
   top: 15px;
   left: 25px;
   max-width: 200px;
+  cursor: pointer;
 }
 
 .list-title:focus {
@@ -56,10 +58,18 @@
 .list-title-edit {
   position: relative;
   font-size: 0.875em;
-  width: 32px;
-  height: 32px;
-  margin-left: 40px;
+  width: 30px;
+  height: 30px;
+  padding: 18px;
+  margin-left: 240px;
   border-radius: 50%;
+}
+
+.list-title-edit span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.25em;
 }
 
 .list-title-edit:hover {
@@ -72,20 +82,29 @@
 }
 
 .list-days-to-expiration {
+  top: 16px;
   right: 120px;
 }
 
 .list-length {
-  right: 60px;
+  right: 70px;
+  top: 16px;
 }
 
 .list-remove {
+  background: none;
   right: 20px;
-  background-color: inherit;
   width: 30px;
   height: 30px;
+  padding: 20px;
   border: none;
   border-radius: 50%;
+}
+
+.list-remove span {
+  position: absolute;
+  top: 10px;
+  left: 12px;
 }
 
 .list-remove:hover {
@@ -95,9 +114,4 @@
 
 .list-remove:focus {
   outline: none;
-}
-
-.line {
-  margin: 20px 20px 0 20px;
-  border-top: 2px solid var(--text-color);
 }
