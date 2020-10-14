@@ -1,10 +1,8 @@
-import * as React from "react";
+import React from "react";
 
 import List from "../ShoppingLists/List/List";
 
 import LocalStorageManager from "../../../js/localStorageManager";
-
-import "./RefuseBin.css";
 
 class RefuseBin extends React.Component {
   constructor(props) {
@@ -19,7 +17,7 @@ class RefuseBin extends React.Component {
     const removedLists = LocalStorageManager.getRemovedShoppingLists();
 
     return (
-      <div id="removed-lists">
+      <main id="removed-lists">
         {removedLists.map(list => (
           <List
             key={list.id}
@@ -28,7 +26,7 @@ class RefuseBin extends React.Component {
             onClickRemoveList={this.handleClickRemoveList}
           />
         ))}
-      </div>
+      </main>
     );
   }
 

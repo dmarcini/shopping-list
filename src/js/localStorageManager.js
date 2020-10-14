@@ -25,10 +25,6 @@ class LocalStorageManager {
   }
 
   static updateShoppingList(id, shoppingList) {
-    if (id === undefined || id === null) {
-      return;
-    }
-
     const localStorageManager = this.getInstance();
     const shoppingLists = localStorageManager.shoppingLists;
 
@@ -57,6 +53,7 @@ class LocalStorageManager {
   static updateItem(listID, itemID, item) {
     const localStorageManager = this.getInstance();
     const shoppingLists = localStorageManager.shoppingLists;
+  
     const listIndex = shoppingLists.findIndex(shoppingList => {
         return shoppingList.id === listID;
     });
@@ -72,11 +69,24 @@ class LocalStorageManager {
   }
 
   static removeShoppingList(id) {
+    const shoppingList = this.getShoppingList(id);
+    const date = new Date();
+
+    date.setDate(date.getDate() + this.EXPIRATION_DAYS);
+    shoppingList.expirationDate = date;
+
+    this.updateShoppingList(id, shoppingList);
     this.moveShoppingList(id, "shoppingLists", "removedShoppingLists");
   }
 
   static restoreRemovedShoppingList(id) {
     this.moveShoppingList(id, "removedShoppingLists", "shoppingLists");
+
+    const shoppingList = this.getShoppingList(id);
+
+    shoppingList.expirationDate = null;
+
+    this.updateShoppingList(id, shoppingList);
   }
 
   static getShoppingList(id) {
@@ -105,19 +115,15 @@ class LocalStorageManager {
   }
 
   static getItems(listType, id) {
-    if (listType === "actual") {
-      return this.getShoppingList(id).items;
-    }
-
-    return this.getRemovedShoppingList(id).items;
+    return listType === "actual" ? this.getShoppingList(id).items
+                                 : this.getRemovedShoppingList(id).items;
   }
 
   static getItem(listType, listID, itemID) {
-    if (listType === "actual") {
-      return this.getItems("actual", listID).find(item => item.id === itemID);
-    }
-
-    return this.getItems("removed", listID).find(item => item.id === itemID);
+    return listType === "actual" ? this.getItems("actual", listID)
+                                       .find(item => item.id === itemID)
+                                 : this.getItems("removed", listID)
+                                       .find(item => item.id === itemID);
   }
 
   static removeListsWithExpirationDateExceeded() {
@@ -134,7 +140,7 @@ class LocalStorageManager {
   }
 
   static getIDCounter() {
-    return JSON.parse(localStorage.getItem("shoppingLists")).idCounter;
+    return this.getInstance().idCounter;
   }
 
   static getInstance() {
@@ -151,33 +157,18 @@ class LocalStorageManager {
       return shoppingList.id === id;
     });
 
-    if (index === undefined) {
-      return;
-    }
-
     if (toInstance === undefined) {
       toInstance = [];
-    }
-
-    if (to === "removedShoppingLists") {
-      const date = new Date();
-
-      date.setDate(date.getDate() + this.EXPIRATION_DAYS);
-
-      fromInstance[index].expirationDate = date;
-    } else {
-      fromInstance[index].expirationDate = null;
     }
 
     toInstance.push(fromInstance[index]);
     fromInstance.splice(index, 1);
 
+    toInstance.sort((sl1, sl2) => new Date(sl1.expirationDate).getTime() - 
+                                  new Date(sl2.expirationDate).getTime());
+
     localStorageManager[from] = fromInstance;;
     localStorageManager[to] = toInstance;
-
-    toInstance.sort((shoppingList1, shoppingList2) => {
-      return shoppingList1.id - shoppingList2.id
-    });
 
     localStorage.setItem("shoppingLists", JSON.stringify(localStorageManager)); 
   }

@@ -1,11 +1,10 @@
-import * as React from "react";
+import React from "react";
 import {
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
 
-import Home from "./Home/Home";
 import ShoppingLists from "./ShoppingLists/Lists";
 import RefuseBin from "./RefuseBin/RefuseBin";
 
@@ -13,18 +12,16 @@ function Main() {
   return (
     <Switch>
       <Route
-        path="/home"
-        component={Home} exact
-      />
-      <Route
         path="/shopping-lists"
-        component={ShoppingLists} exact
+        component={ShoppingLists}
+        exact
       />
       <Route
         path="/refuse-bin"
-        component={RefuseBin} exact
+        component={RefuseBin}
+        exact
       />
-      <Redirect to="/home"></Redirect>
+      <Redirect to="/shopping-lists"></Redirect>
     </Switch>
   );
 }

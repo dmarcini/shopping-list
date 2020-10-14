@@ -2,22 +2,17 @@
   display: block;
   width: 100%;
   padding: 0;
+  cursor: pointer;
 }
 
 .nav-item:hover {
   background: linear-gradient(var(--primary-light-color),
                               var(--primary-dark-color));
-  font-weight: bold;
-  cursor: pointer;
   opacity: 0.7;
+  font-weight: bold;
 }
 
-.nav-item:first-child {
-  border-bottom: 1px solid var(--primary-dark-color);
-  border-top: 1px solid var(--primary-dark-color);
-}
-
-.nav-item:last-child {
+.nav-item:first-child, .nav-item:last-child {
   border-top: 1px solid var(--primary-dark-color);
   border-bottom: 1px solid var(--primary-dark-color);
 }
@@ -28,20 +23,18 @@
   margin-right: 15px;
 }
 
-.nav-item a {
+.nav-item a, .nav-item a:hover {
   display: block;
-  color: var(--text-color);
+  color: var(--text-color);  
   font-size: 0.875em;
-  text-transform: uppercase;
   text-decoration: none;
+  text-transform: uppercase;
   padding: 10px;
+  cursor: pointer;
 }
 
 .nav-item a:hover {
-  color: var(--text-color);
   font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .active {

@@ -39,18 +39,24 @@ class Lists extends React.Component {
   }
 
   renderLists() {
-    const lists = LocalStorageManager.getShoppingLists();
-
-    return lists.map(list => {
-      return (
-        <List
-          key={list.id}
-          list={list}
-          listType="actual"
-          onClickRemoveList={this.handleClickRemoveList}
-        />
-      );
-    });
+    return (
+      <div id="lists">
+        {LocalStorageManager.getShoppingLists().map(list => (
+          <List
+            key={list.id}
+            list={list}
+            listType="actual"
+            onClickRemoveList={this.handleClickRemoveList}
+          />
+        ))} 
+        <button
+          id="add-list"
+          onClick={this.handleClickAddList}
+        >
+          <span className="fas fa-plus"></span>
+        </button>
+      </div>
+    );
   }
 
   render() {
@@ -62,17 +68,7 @@ class Lists extends React.Component {
       return this.renderListNameModal();
     }
 
-    return (
-      <div id="lists">
-        {this.renderLists()}
-        <button
-          id="add-list"
-          onClick={this.handleClickAddList}
-        >
-          <span className="fas fa-plus"></span>
-        </button>
-      </div>
-    );
+    return this.renderLists();
   }
 
   handleClickCreateFirstList = () => {

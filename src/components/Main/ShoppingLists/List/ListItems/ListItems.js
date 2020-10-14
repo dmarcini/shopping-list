@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React from "react";
 
 import ListItem from "./ListItem/ListItem";
 
@@ -38,13 +38,9 @@ class ListItems extends React.Component {
   }
 
   render() {
-    const items = this.state.items.map((item) => {
-      return this.renderListItem(item);
-    });
-
     return (
       <div class="items">
-        {items}
+        {this.state.items.map((item) => this.renderListItem(item))}
         <button
           id="add-item"
           type="button"

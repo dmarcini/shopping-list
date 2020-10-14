@@ -1,5 +1,6 @@
 #modal {
-  background: linear-gradient(var(--primary-light-color), var(--primary-dark-color));
+  background: linear-gradient(var(--primary-light-color),
+                              var(--primary-dark-color));
   max-width: 700px;
   height: 150px;
   margin-top: 200px;

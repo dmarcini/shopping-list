@@ -1,5 +1,5 @@
-import * as React from "react";
-import {NavLink} from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./NavbarItem.css";
 
@@ -10,7 +10,7 @@ function NavbarItem(props) {
         to={props.to}
         activeClassName="active"
       >
-        <span className={props.class + " icon"}></span>
+        <span className={props.icon}></span>
         {props.children}
       </NavLink>
     </li>

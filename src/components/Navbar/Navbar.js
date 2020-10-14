@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-import Header from "../../Header/Header"
+import Header from "../Header/Header"
 import NavbarItem from "./NavbarItem/NavbarItem";
 
 import "./Navbar.css";
@@ -12,20 +12,14 @@ function Navbar() {
       <h1>Manage your shopping lists</h1>
       <ul>
         <NavbarItem
-          to="/home"
-          class="fas fa-home"
-        >
-          Home
-        </NavbarItem>
-        <NavbarItem
           to="/shopping-lists"
-          class="fas fa-cart-plus"
+          icon="icon fas fa-cart-plus"
         >
           Shopping lists
         </NavbarItem>
         <NavbarItem
           to="refuse-bin"
-          class="fa fa-trash"
+          icon="icon fa fa-trash"
         >
           Refuse bin
         </NavbarItem>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Row } from "react-bootstrap";
 
 import LocalStorageManager from "../../../../../../js/localStorageManager";
@@ -41,7 +41,6 @@ class ListItem extends React.Component {
             <span className={"fas fa-check " + hidden}></span>
           </span>
         </label>
-        
         <button
           className="remove-item"
           type="button"

@@ -27,7 +27,8 @@
   position: relative;
 }
 
-.list-title, .list-title-edit, .list-length, .list-remove {
+.list-title, .list-title-edit, .list-length, 
+.list-remove, .list-days-to-expiration {
   position: absolute;
   top: 10px;
   background-color: inherit;
@@ -68,6 +69,10 @@
 
 .list-title-edit:focus {
   outline: none;
+}
+
+.list-days-to-expiration {
+  right: 120px;
 }
 
 .list-length {

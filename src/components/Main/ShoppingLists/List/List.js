@@ -6,7 +6,7 @@ import LocalStorageManager from "../../../../js/localStorageManager";
 
 import "./List.css";
 
-class List  extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,24 +21,26 @@ class List  extends React.Component {
   render() {
     const listType = this.props.listType;
   
-    const shouldShowEditListTitleButton = (listType === "removed") ? false
-                                                                   : true;
-    const thrashIconClass = (listType === "removed") ? "fas fa-trash-restore" :
-                                                       "fa fa-trash";
+    const shouldShowEditListTitleButton = 
+      (listType === "removed") ? false : true;
+    const thrashIconClass = 
+      (listType === "removed") ? "fas fa-trash-restore" : "fa fa-trash";
 
     const items = LocalStorageManager.getItems(listType, this.props.list.id);
     const itemsNumber = items.length;
     const checkedItemsNumber = items.filter(item => item.isChecked).length;
 
-    let listItems;
+    const daysToExpiration =
+      Math.floor((new Date(this.props.list.expirationDate) - new Date()) / 
+                 (1000 * 3600 * 24));
 
-    if (this.state.shouldRenderListItems) {
-      listItems = <ListItems
-                    list={this.props.list}
-                    switchItemChange={this.switchItemChange}
-                  />
-    }
-                                               
+    let listItems = 
+      !this.state.shouldRenderListItems ? null : 
+        (<ListItems
+          list={this.props.list}
+          switchItemChange={this.switchItemChange}
+       />);
+                                    
     return (
       <div
           key={this.props.list.id}
@@ -46,7 +48,7 @@ class List  extends React.Component {
         >
           <div
             className="description"
-            onClick={this.handleClickShowList}
+            onClick={(listType === "actual") ? this.handleClickShowList : null}
           >
             <div className="list-title-container">
               <input
@@ -66,6 +68,12 @@ class List  extends React.Component {
                 <span className="fas fa-edit"></span>
               </button>
             </div>
+            <span className="list-days-to-expiration">
+              {(listType === "removed") ? daysToExpiration + 
+                                          ((daysToExpiration > 1) ? " days" 
+                                                                  : " day") 
+                                        : null}
+            </span>
             <span className="list-length">
               {checkedItemsNumber} / {itemsNumber}
             </span>
