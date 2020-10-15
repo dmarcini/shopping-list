@@ -1,6 +1,6 @@
 # Shopping Lists Manager
 
-Full responsive dynamic website for managing shopping lists.
+Full responsive website for managing shopping lists.
 <br>
 This application doesn't need any registration and login.
 All the lists you create will be saved in your browser memory
@@ -48,13 +48,14 @@ You can freely manage your lists by:
 ## Technology
 * HTML5
 * CSS3 + Bootstrap
-* JavaScript + React.js
+* JavaScript + JSX + React.js
 
 ---
 
 ## Requirements
 * web browser - Chrome, Edge, Firefox etc. (for running) 
 * git CLI and heroku CLI installed (for deploying)
+* Node.js installed (for npm package manager)
 
 ---
 
@@ -64,15 +65,16 @@ Example for Linux system and Heroku cloud platform.
 Run your terminal and type below commands: 
 ```
 git clone https://github.com/dmarcini/shopping-lists-manager
-cd portfolio
+cd shopping-lists-manager
 rm -r .git
+npm install
 
 git init
 git add *
 git commit -m "Your commit name"
 
 heroku login
-heroku apps:create your-site-name
+heroku create your-site-name --buildpack mars/create-react-app
 git push heroku master
 ```
 After this step your site should be available on: <br>
